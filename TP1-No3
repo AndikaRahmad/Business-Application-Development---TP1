@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class CekBilanganPrima {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input angka dari pengguna
+        System.out.print("Input angka bilangan bulat: ");
+        int angka = scanner.nextInt();
+
+        // Cek apakah angka merupakan bilangan prima
+        boolean isPrima = isBilanganPrima(angka);
+
+        // Menampilkan hasil
+        if (isPrima) {
+            System.out.println(angka + " adalah bilangan prima");
+        } else {
+            System.out.println(angka + " bukan bilangan prima karena bisa dibagi oleh " + cariPembagi(angka));
+        }
+    }
+
+    // Fungsi untuk mengecek apakah suatu angka adalah bilangan prima
+    private static boolean isBilanganPrima(int num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Fungsi untuk mencari pembagi dari suatu angka yang bukan prima
+    private static int cariPembagi(int num) {
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+}
