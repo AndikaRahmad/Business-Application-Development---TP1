@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class PerpustakaanDavid {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input jenis buku
+        System.out.print("Masukkan jenis buku (pelajaran/novel/skripsi): ");
+        String jenisBuku = scanner.nextLine();
+
+        // Input jumlah hari keterlambatan
+        System.out.print("Masukkan jumlah hari keterlambatan pengembalian: ");
+        int hariKeterlambatan = scanner.nextInt();
+
+        // Menghitung denda berdasarkan jenis buku
+        int denda = hitungDenda(jenisBuku, hariKeterlambatan);
+
+        // Menampilkan hasil
+        if (denda > 0) {
+            System.out.println("Denda yang harus dibayarkan: Rp" + denda);
+        } else {
+            System.out.println("Pengembalian tepat waktu. Tidak ada denda.");
+        }
+    }
+
+    // Fungsi untuk menghitung denda berdasarkan jenis buku dan hari keterlambatan
+    private static int hitungDenda(String jenisBuku, int hariKeterlambatan) {
+        int dendaPerHari = 0;
+
+        // Tentukan denda per hari berdasarkan jenis buku
+        switch (jenisBuku.toLowerCase()) {
+            case "pelajaran":
+                dendaPerHari = 2000;
+                break;
+            case "novel":
+                dendaPerHari = 5000;
+                break;
+            case "skripsi":
+                dendaPerHari = 10000;
+                break;
+            default:
+                System.out.println("Jenis buku tidak valid.");
+                return 0;
+        }
+
+        // Hitung total denda
+        if (hariKeterlambatan > 0) {
+            return dendaPerHari * hariKeterlambatan;
+        } else {
+            return 0;
+        }
+    }
+}
